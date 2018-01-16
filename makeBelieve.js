@@ -6,6 +6,41 @@
     this.length = length;
 
     //functions
+    //3. method .parent
+    this.parent = function (selector) {
+      var parents = [];
+
+      for(var i = 0; i < this.elements.length; i++) {
+        if (selector === undefined || this.elements[i].parentElement.matches(selector)) {
+          if (!parents.includes(this.elements[i].parentElement)) {
+            parents.push(this.elements[i].parentElement);
+          }
+        }
+      }
+
+      return new MakeBelieveElement(parents, parents.length);
+    };
+
+    //4. method .grandParent
+    this.grandParent = function (selector) {
+      var parents = [];
+      var grandParents = [];
+
+      for(var i = 0; i < this.elements.length; i++) {
+        parents.push(this.elements[i].parentElement);
+      }
+
+      for (var i = 0; i < parents.length; i++) {
+        if (selector === undefined || parents[i].parentElement.matches(selector)) {
+          if(!grandParents.includes(parents[i].parentElement)) {
+            grandParents.push(parents[i].parentElement);
+          }
+        }
+      }
+
+      return new MakeBelieveElement(grandParents, grandParents.length);
+    }
+
     this.nextSiblings = function () {
         var siblings = [];
 
@@ -43,4 +78,4 @@
 })();
 
 var paragraphs = __('p.one').nextSiblings().data('background', '#dddddd');
-console.log( __('p.one').nextSiblings());
+console.log( __('div').parent());
