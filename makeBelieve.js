@@ -39,19 +39,25 @@
       }
 
       return new MakeBelieveElement(grandParents, grandParents.length);
-    }
+    };
 
-    this.nextSiblings = function () {
-        var siblings = [];
-
-        for(var i = 0; i < this.elements.length; i++) {
-          var currentElement = this.elements[i];
-          if(currentElement.nextElementSibling) {
-            siblings.push(currentElement.nextElementSibling);
+    //5. method .ancestor
+    this.ancestor = function (selector) {
+      currentElements = this.elements;
+      parents = [];
+      while (currentElements.length > 0) {
+        for (var i = 0; i < currentElements.length; i++) {
+          if (currentElements[i].parentElement.matches(selector)) {
+            return new MakeBelieveElement(currentElements[i].parentElement, 1);
+          }
+          if(!parents.includes(currentElements[i].parentElement)) {
+            parents.push(currentElements[i].parentElement);
           }
         }
-
-        return new MakeBelieveElement(siblings, siblings.length);
+        currentElements = parents;
+        parents = [];
+      }
+      return [];
     };
 
     this.data = function (key, value) {
@@ -77,5 +83,4 @@
   window.__ = innerMakeBelieve;
 })();
 
-var paragraphs = __('p.one').nextSiblings().data('background', '#dddddd');
-console.log( __('div').parent());
+console.log( __('p').ancestor('one'));
