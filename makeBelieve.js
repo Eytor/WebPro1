@@ -68,13 +68,19 @@
 
     };
 
-    //7. insert-Text
+    //7. insertText
     this.insertText = function(text) {
       for (var i = 0; i < this.length; i++) {
         this.elements[i].innerHTML = text;
       }
     };
 
+    //7. append
+    this.append = function(text) {
+      for (var i = 0; i < this.length; i++) {
+        this.elements[i].innerHTML = this.elements[i].innerHTML + text;
+      }
+    };
 
 
     this.data = function (key, value) {
@@ -102,3 +108,4 @@
 
 console.log( __('p').ancestor('.zero'));
 __('p.one').insertText("eyþór rokkar");
+__('.zero').append("<p>Shit hvað eyþór rokkar<p>")
