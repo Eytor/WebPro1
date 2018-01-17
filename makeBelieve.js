@@ -75,12 +75,33 @@
       }
     };
 
-    //7. append
+    //8. append
     this.append = function(text) {
       for (var i = 0; i < this.length; i++) {
-        this.elements[i].innerHTML = this.elements[i].innerHTML + text;
+        var currentText = this.elements[i].innerHTML;
+        if(typeof text === 'string') {
+          this.elements[i].innerHTML = currentText + text;
+        }
+        else {
+            this.elements[i].innerHTML = currentText + text.textContent;
+        }
       }
     };
+
+    //9. prepend
+    this.prepend = function(text) {
+      for (var i = 0; i < this.length; i++) {
+        var currentText = this.elements[i].innerHTML;
+        if(typeof text === 'string') {
+          this.elements[i].innerHTML = text + currentText;
+        }
+        else {
+            this.elements[i].innerHTML = text.textContent + currentText;
+        }
+
+      }
+    };
+
 
 
     this.data = function (key, value) {
@@ -109,3 +130,9 @@
 console.log( __('p').ancestor('.zero'));
 __('p.one').insertText("eyþór rokkar");
 __('.zero').append("<p>Shit hvað eyþór rokkar<p>")
+__('.zero').append(
+  document.createElement('p')
+    .appendChild(
+      document.createTextNode('eyþór elskar sokka')
+    )
+  );
