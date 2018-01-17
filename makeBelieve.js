@@ -63,6 +63,18 @@
       return new MakeBelieveElement(null, 0);
 
     };
+    //6. method. onClick
+    this.onClick = function () {
+
+    };
+
+    //7. insert-Text
+    document.getElementById("text").onclick = function(){getText()};
+    function getText() {
+      document.getElementById("text").innerHTML = 'Message Changed';
+    }
+
+
 
     this.data = function (key, value) {
        // key = background
