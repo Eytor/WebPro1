@@ -69,10 +69,11 @@
     };
 
     //7. insert-Text
-    document.getElementById("text").onclick = function(){getText()};
-    function getText() {
-      document.getElementById("text").innerHTML = 'Message Changed';
-    }
+    this.insertText = function(text) {
+      for (var i = 0; i < this.length; i++) {
+        this.elements[i].innerHTML = text;
+      }
+    };
 
 
 
@@ -100,3 +101,4 @@
 })();
 
 console.log( __('p').ancestor('.zero'));
+__('p.one').insertText("eyþór rokkar");
