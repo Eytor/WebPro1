@@ -47,17 +47,21 @@
       parents = [];
       while (currentElements.length > 0) {
         for (var i = 0; i < currentElements.length; i++) {
-          if (currentElements[i].parentElement.matches(selector)) {
-            return new MakeBelieveElement(currentElements[i].parentElement, 1);
+          if (currentElements[i].parentElement) {
+            if (currentElements[i].parentElement.matches(selector)) {
+              return new MakeBelieveElement(currentElements[i].parentElement, 1);
+            }
+            if(!parents.includes(currentElements[i].parentElement)) {
+              parents.push(currentElements[i].parentElement);
+            }
           }
-          if(!parents.includes(currentElements[i].parentElement)) {
-            parents.push(currentElements[i].parentElement);
-          }
+
         }
         currentElements = parents;
         parents = [];
       }
-      return [];
+      return new MakeBelieveElement(null, 0);
+
     };
 
     this.data = function (key, value) {
@@ -83,4 +87,4 @@
   window.__ = innerMakeBelieve;
 })();
 
-console.log( __('p').ancestor('one'));
+console.log( __('p').ancestor('.zero'));
