@@ -102,6 +102,23 @@
       }
     };
 
+    //10. delete
+    this.delete = function() {
+      for (var i = 0; i < this.elements.length; i++) {
+        this.elements[i].remove();
+      }
+      return this;
+    };
+
+    //11. ajax
+
+    //12. css
+    this.css = function(styles, setting) {
+      for (var i = 0; i < this.elements.length; i++) {
+        this.elements[i].style.styles = setting;
+      }
+    };
+
 
 
     this.data = function (key, value) {
@@ -136,3 +153,4 @@ __('.zero').append(
       document.createTextNode('eyþór elskar sokka')
     )
   );
+__('.three').css('color', 'red')
