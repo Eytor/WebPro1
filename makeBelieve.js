@@ -114,12 +114,24 @@
 
     //12. css
     this.css = function(styles, setting) {
+      var style = styles+":"+ setting;
       for (var i = 0; i < this.elements.length; i++) {
-        this.elements[i].style.styles = setting;
+        this.elements[i].setAttribute("style", style);
       }
+      return this;
     };
 
-
+    //13. toggleClass
+    this.toggleClass = function (c) {
+      for (var i = 0; i < this.elements.length; i++) {
+        if (this.elements[i].classList.contains(c)) {
+          this.elements[i].classList.remove(c);
+        }
+        else {
+          this.elements[i].classList.add(c);
+        }
+      }
+    };
 
     this.data = function (key, value) {
        // key = background
@@ -144,7 +156,7 @@
   window.__ = innerMakeBelieve;
 })();
 
-console.log( __('p').ancestor('.zero'));
+console.log( __('p').elements);
 __('p.one').insertText("eyþór rokkar");
 __('.zero').append("<p>Shit hvað eyþór rokkar<p>")
 __('.zero').append(
@@ -153,4 +165,5 @@ __('.zero').append(
       document.createTextNode('eyþór elskar sokka')
     )
   );
-__('.three').css('color', 'red')
+__('p').css('color', 'red')
+__('.three').toggleClass('one')
