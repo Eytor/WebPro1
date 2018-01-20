@@ -55,19 +55,19 @@
               parents.push(currentElements[i].parentElement);
             }
           }
-
         }
         currentElements = parents;
         parents = [];
       }
       return new MakeBelieveElement(null, 0);
-
     };
 
     //6. method. onClick
     this.onClick = function (func) {
       if (typeof(func) === 'function') {
-
+        for (var i = 0; i < this.length; i++) {
+          this.elements[i].addEventListener("click", func);
+        }
       }
     };
 
@@ -101,7 +101,6 @@
         else {
             this.elements[i].innerHTML = text.textContent + currentText;
         }
-
       }
     };
 
@@ -114,6 +113,7 @@
     };
 
     //11. ajax
+    //skildi þetta ekki
 
     //12. css
     this.css = function(styles, setting) {
@@ -136,16 +136,23 @@
       }
     };
 
-    this.data = function (key, value) {
-       // key = background
-       // value = #ffffff
-      for (var i = 0; i < this.elements.length; i++) {
-        this.elements[i].dataset[key] = value;
+    //14. onSubmit
+    this.onSubmit = function (func) {
+      if (typeof(func) === 'function') {
+        for (var i = 0; i < this.length; i++) {
+          this.elements[i].addEventListener("submit", func);
+        }
       }
-
-      return this;
     };
-  };
+
+    //15. onInput
+    this.onInput = function (func) {
+      if (typeof(func) === 'function') {
+        for (var i = 0; i < this.length; i++) {
+          this.elements[i].addEventListener("input", func);
+        }
+      }
+    };
 
   var innerMakeBelieve = function (query) {
     var elements = document.querySelectorAll(query);
@@ -170,3 +177,6 @@ __('.zero').append(
   );
 __('p').css('color', 'red')
 console.log(typeof(function (){}) === 'function')
+__('#password').onInput(function (evt) {
+  console.log(evt.target.value);
+});
