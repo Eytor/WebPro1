@@ -63,9 +63,12 @@
       return new MakeBelieveElement(null, 0);
 
     };
-    //6. method. onClick
-    this.onClick = function () {
 
+    //6. method. onClick
+    this.onClick = function (func) {
+      if (typeof(func) === 'function') {
+
+      }
     };
 
     //7. insertText
@@ -104,7 +107,7 @@
 
     //10. delete
     this.delete = function() {
-      for (var i = 0; i < this.elements.length; i++) {
+      for (var i = 0; i < this.length; i++) {
         this.elements[i].remove();
       }
       return this;
@@ -114,7 +117,7 @@
 
     //12. css
     this.css = function(styles, setting) {
-      var style = styles+":"+ setting;
+      var style = styles + ":"+ setting;
       for (var i = 0; i < this.elements.length; i++) {
         this.elements[i].setAttribute("style", style);
       }
@@ -166,4 +169,4 @@ __('.zero').append(
     )
   );
 __('p').css('color', 'red')
-__('.three').toggleClass('one')
+console.log(typeof(function (){}) === 'function')
